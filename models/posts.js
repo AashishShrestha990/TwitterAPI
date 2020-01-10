@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    post: {
+    story: {
         type: String,
         required: true
     },
@@ -31,7 +31,10 @@ const postSchema = new mongoose.Schema({
     },
     image: {
         type: String
+    },
+    uimage: {
+        type: String
     }
 });
 
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('Postweet', postSchema);

@@ -1,22 +1,23 @@
 const express = require('express');
 const Posts = require('../models/posts');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
 router.post('/add', (req, res, next) => {
     
         Posts.create({
             name: req.body.name,
             username: req.body.username,
-            post: req.body.post,
+            story: req.body.story,
             like: req.body.like,
             comment: req.body.comment,
             retweet: req.body.retweet,
             time: req.body.time,
-            image: req.body.image
-        }).then((post) => {
-           let token = jwt.sign({ _id: post._id }, process.env.SECRET);
-                        res.json({post, status: 'Post success!', token: token });
+            image: req.body.image,
+            uimage: req.body.uimage
+        }).then((postweet) => {
+           // let token = jwt.sign({ _id: posty._id }, process.env.SECRET);
+                        res.json({postweet, status: 'Post success!' });
         }).catch(next);
     });
 
@@ -29,10 +30,10 @@ router.post('/add', (req, res, next) => {
 router.route('/')
     .get((req, res, next) => {
         Posts.find({})
-            .then((post) => {
+            .then((postweet) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(post);
+                res.json(postweet);
             }).catch(next);
     })
     .put((req, res, next) => {
